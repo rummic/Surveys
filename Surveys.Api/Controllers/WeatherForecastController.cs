@@ -3,10 +3,14 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Surveys.Domain.Entities;
 
 namespace Surveys.Api.Controllers
 {
     [ApiController]
+    [Authorize]
     [Route("[controller]")]
     public class WeatherForecastController : ControllerBase
     {
@@ -23,6 +27,7 @@ namespace Surveys.Api.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = Role.Admin)]
         public IEnumerable<WeatherForecast> Get()
         {
             var rng = new Random();

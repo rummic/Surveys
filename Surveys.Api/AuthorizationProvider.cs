@@ -1,15 +1,15 @@
-﻿using Microsoft.IdentityModel.Tokens;
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
+using Surveys.Api.Validators;
 using Surveys.Commons;
 using Surveys.Commons.Dtos.UserDtos;
+using Surveys.Domain;
+using Surveys.Domain.Entities;
 using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.Extensions.Configuration;
-using Surveys.Api.Validators;
-using Surveys.Domain;
-using Surveys.Domain.Entities;
 
 namespace Surveys.Api
 {

@@ -20,38 +20,31 @@ namespace Surveys.DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Surveys",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(nullable: false),
+                    SubmittedAt = table.Column<DateTime>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Surveys", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Users",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
                     Name = table.Column<string>(nullable: true),
                     Email = table.Column<string>(nullable: true),
-                    Role = table.Column<int>(nullable: false),
+                    Role = table.Column<string>(nullable: true),
                     Password = table.Column<byte[]>(nullable: true),
                     Salt = table.Column<byte[]>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Users", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Surveys",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(nullable: false),
-                    SubmittedAt = table.Column<DateTime>(nullable: false),
-                    UserId = table.Column<Guid>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Surveys", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Surveys_Users_UserId",
-                        column: x => x.UserId,
-                        principalTable: "Users",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -85,6 +78,7 @@ namespace Surveys.DataAccess.Migrations
                 {
                     Id = table.Column<Guid>(nullable: false),
                     SurveyQuestionId = table.Column<Guid>(nullable: true),
+                    UserId = table.Column<Guid>(nullable: true),
                     AnswerType = table.Column<int>(nullable: false),
                     Answer = table.Column<string>(nullable: true)
                 },
@@ -97,12 +91,23 @@ namespace Surveys.DataAccess.Migrations
                         principalTable: "SurveyQuestions",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_SurveyQuestionAnswers_Users_UserId",
+                        column: x => x.UserId,
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_SurveyQuestionAnswers_SurveyQuestionId",
                 table: "SurveyQuestionAnswers",
                 column: "SurveyQuestionId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_SurveyQuestionAnswers_UserId",
+                table: "SurveyQuestionAnswers",
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_SurveyQuestions_QuestionId",
@@ -113,11 +118,6 @@ namespace Surveys.DataAccess.Migrations
                 name: "IX_SurveyQuestions_SurveyId",
                 table: "SurveyQuestions",
                 column: "SurveyId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Surveys_UserId",
-                table: "Surveys",
-                column: "UserId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -129,13 +129,13 @@ namespace Surveys.DataAccess.Migrations
                 name: "SurveyQuestions");
 
             migrationBuilder.DropTable(
+                name: "Users");
+
+            migrationBuilder.DropTable(
                 name: "Questions");
 
             migrationBuilder.DropTable(
                 name: "Surveys");
-
-            migrationBuilder.DropTable(
-                name: "Users");
         }
     }
 }

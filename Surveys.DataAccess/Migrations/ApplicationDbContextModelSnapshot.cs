@@ -3,25 +3,23 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Surveys.DataAccess;
 
 namespace Surveys.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200416211219_Init")]
-    partial class Init
+    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.1")
+                .HasAnnotation("ProductVersion", "3.1.3")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("Surveys.Domain.Question", b =>
+            modelBuilder.Entity("Surveys.Domain.Entities.Question", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -35,7 +33,7 @@ namespace Surveys.DataAccess.Migrations
                     b.ToTable("Questions");
                 });
 
-            modelBuilder.Entity("Surveys.Domain.Survey", b =>
+            modelBuilder.Entity("Surveys.Domain.Entities.Survey", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -44,17 +42,12 @@ namespace Surveys.DataAccess.Migrations
                     b.Property<DateTime>("SubmittedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid?>("UserId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Surveys");
                 });
 
-            modelBuilder.Entity("Surveys.Domain.SurveyQuestion", b =>
+            modelBuilder.Entity("Surveys.Domain.Entities.SurveyQuestion", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -75,7 +68,7 @@ namespace Surveys.DataAccess.Migrations
                     b.ToTable("SurveyQuestions");
                 });
 
-            modelBuilder.Entity("Surveys.Domain.SurveyQuestionAnswer", b =>
+            modelBuilder.Entity("Surveys.Domain.Entities.SurveyQuestionAnswer", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -90,14 +83,19 @@ namespace Surveys.DataAccess.Migrations
                     b.Property<Guid?>("SurveyQuestionId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid?>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.HasKey("Id");
 
                     b.HasIndex("SurveyQuestionId");
 
+                    b.HasIndex("UserId");
+
                     b.ToTable("SurveyQuestionAnswers");
                 });
 
-            modelBuilder.Entity("Surveys.Domain.User", b =>
+            modelBuilder.Entity("Surveys.Domain.Entities.User", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -112,8 +110,8 @@ namespace Surveys.DataAccess.Migrations
                     b.Property<byte[]>("Password")
                         .HasColumnType("varbinary(max)");
 
-                    b.Property<int>("Role")
-                        .HasColumnType("int");
+                    b.Property<string>("Role")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<byte[]>("Salt")
                         .HasColumnType("varbinary(max)");
@@ -123,29 +121,26 @@ namespace Surveys.DataAccess.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("Surveys.Domain.Survey", b =>
+            modelBuilder.Entity("Surveys.Domain.Entities.SurveyQuestion", b =>
                 {
-                    b.HasOne("Surveys.Domain.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId");
-                });
-
-            modelBuilder.Entity("Surveys.Domain.SurveyQuestion", b =>
-                {
-                    b.HasOne("Surveys.Domain.Question", "Question")
+                    b.HasOne("Surveys.Domain.Entities.Question", "Question")
                         .WithMany()
                         .HasForeignKey("QuestionId");
 
-                    b.HasOne("Surveys.Domain.Survey", "Survey")
+                    b.HasOne("Surveys.Domain.Entities.Survey", "Survey")
                         .WithMany()
                         .HasForeignKey("SurveyId");
                 });
 
-            modelBuilder.Entity("Surveys.Domain.SurveyQuestionAnswer", b =>
+            modelBuilder.Entity("Surveys.Domain.Entities.SurveyQuestionAnswer", b =>
                 {
-                    b.HasOne("Surveys.Domain.SurveyQuestion", "SurveyQuestion")
+                    b.HasOne("Surveys.Domain.Entities.SurveyQuestion", "SurveyQuestion")
                         .WithMany()
                         .HasForeignKey("SurveyQuestionId");
+
+                    b.HasOne("Surveys.Domain.Entities.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
                 });
 #pragma warning restore 612, 618
         }

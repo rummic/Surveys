@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Surveys.Domain;
 using Surveys.Domain.Entities;
+using System.Threading.Tasks;
 
 namespace Surveys.DataAccess
 {

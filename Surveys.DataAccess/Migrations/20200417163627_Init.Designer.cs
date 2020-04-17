@@ -10,8 +10,8 @@ using Surveys.DataAccess;
 namespace Surveys.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200417004140_MovedUserToSurveyQuestionAnswer")]
-    partial class MovedUserToSurveyQuestionAnswer
+    [Migration("20200417163627_Init")]
+    partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -112,8 +112,8 @@ namespace Surveys.DataAccess.Migrations
                     b.Property<byte[]>("Password")
                         .HasColumnType("varbinary(max)");
 
-                    b.Property<int>("Role")
-                        .HasColumnType("int");
+                    b.Property<string>("Role")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<byte[]>("Salt")
                         .HasColumnType("varbinary(max)");
