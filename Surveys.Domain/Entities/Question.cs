@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Text;
 
-namespace Surveys.Domain
+namespace Surveys.Domain.Entities
 {
     public class Question
     {

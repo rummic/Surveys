@@ -1,13 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace Surveys.Domain
+namespace Surveys.Domain.Entities
 {
     public class Survey
     {
         public Guid Id { get; set; }
         public DateTime SubmittedAt { get; set; }
-        public User User { get; set; }
+     
     }
 }

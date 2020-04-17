@@ -3,11 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29911.84
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Surveys.Api", "Surveys.Api\Surveys.Api.csproj", "{88AFFF27-0D18-48A9-9B34-73444E50B80B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Surveys.Api", "Surveys.Api\Surveys.Api.csproj", "{88AFFF27-0D18-48A9-9B34-73444E50B80B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Surveys.Domain", "Surveys.Domain\Surveys.Domain.csproj", "{60F9DCE5-788B-412C-9DEA-CFDF5EF31744}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Surveys.Domain", "Surveys.Domain\Surveys.Domain.csproj", "{60F9DCE5-788B-412C-9DEA-CFDF5EF31744}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Surveys.DataAccess", "Surveys.DataAccess\Surveys.DataAccess.csproj", "{DF4C084D-735B-45EE-8EE7-5EDAFF82ED34}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Surveys.DataAccess", "Surveys.DataAccess\Surveys.DataAccess.csproj", "{DF4C084D-735B-45EE-8EE7-5EDAFF82ED34}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Surveys.Commons", "Surveys.Commons\Surveys.Commons.csproj", "{89178EEC-B882-4F32-918D-14A97AC7039E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{DF4C084D-735B-45EE-8EE7-5EDAFF82ED34}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DF4C084D-735B-45EE-8EE7-5EDAFF82ED34}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DF4C084D-735B-45EE-8EE7-5EDAFF82ED34}.Release|Any CPU.Build.0 = Release|Any CPU
+		{89178EEC-B882-4F32-918D-14A97AC7039E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89178EEC-B882-4F32-918D-14A97AC7039E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89178EEC-B882-4F32-918D-14A97AC7039E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89178EEC-B882-4F32-918D-14A97AC7039E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

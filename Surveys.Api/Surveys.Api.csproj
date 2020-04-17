@@ -16,8 +16,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Surveys.Commons\Surveys.Commons.csproj" />
     <ProjectReference Include="..\Surveys.DataAccess\Surveys.DataAccess.csproj" />
   </ItemGroup>
+
+  <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>
 
 
 </Project>
