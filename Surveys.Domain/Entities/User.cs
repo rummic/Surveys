@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Surveys.Commons;
 using Surveys.Commons.Dtos.UserDtos;
+using Surveys.Commons.ErrorMessages;
 using Surveys.Commons.Helpers;
 
 namespace Surveys.Domain.Entities
@@ -22,7 +23,7 @@ namespace Surveys.Domain.Entities
 
         private User()
         {
-            
+
         }
         public User(RegisterUserDto userData)
         {
@@ -41,7 +42,7 @@ namespace Surveys.Domain.Entities
             var userFromDb = await repository.Users.FirstOrDefaultAsync(x => x.Email == Email);
             if (userFromDb != null)
             {
-                result.ErrorMessage = "User with provided email is already registered.";
+                result.ErrorMessage = UserErrorMessages.DuplicateEmail;
                 return result;
             }
 
@@ -49,6 +50,7 @@ namespace Surveys.Domain.Entities
             await repository.SaveChangesAsync();
             return result;
         }
+
     }
 
     public enum Role

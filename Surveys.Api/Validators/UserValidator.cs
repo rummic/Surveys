@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Surveys.Commons;
 using Surveys.Commons.Dtos.UserDtos;
+using Surveys.Commons.ErrorMessages;
 
 namespace Surveys.Api.Validators
 {
@@ -15,17 +16,17 @@ namespace Surveys.Api.Validators
             
             if (string.IsNullOrEmpty(userData.Email))
             {
-                result.ErrorMessage = "Email cannot be empty.";
+                result.ErrorMessage = UserErrorMessages.EmptyEmail;
                 return result;
             }
             if (string.IsNullOrEmpty(userData.Name))
             {
-                result.ErrorMessage = "Name cannot be empty.";
+                result.ErrorMessage = UserErrorMessages.EmptyName;
                 return result;
             }
             if (string.IsNullOrEmpty(userData.Password))
             {
-                result.ErrorMessage = "Password cannot be empty.";
+                result.ErrorMessage = UserErrorMessages.EmptyPassword;
                 return result;
             }
 
