@@ -35,7 +35,7 @@ namespace Surveys.Commons.Helpers
             return algorithm.ComputeHash(plainTextWithSaltBytes);
         }
 
-        public static bool PasswordsAreEqual(this byte[] array1, byte[] array2)
+        public static bool PasswordsAreEqual(byte[] array1, byte[] array2)
         {
             if (array1.Length != array2.Length)
             {

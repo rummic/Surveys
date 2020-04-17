@@ -21,7 +21,7 @@ namespace Surveys.Domain.Entities
         public byte[] Password { get; set; }
         public byte[] Salt { get; set; }
 
-        private User()
+        public User()
         {
 
         }
@@ -35,6 +35,19 @@ namespace Surveys.Domain.Entities
             Role = Role.User;
         }
 
+        public async Task<Result<User>> GetByEmail(string email, IRepository repository)
+        {
+            var result = new Result<User>();
+            var userFromDb = await repository.Users.FirstOrDefaultAsync(x => x.Email == email);
+            if (userFromDb == null)
+            {
+                result.ErrorMessage = UserErrorMessages.NotFoundByEmail;
+                return result;
+            }
+
+            result.Value = userFromDb;
+            return result;
+        }
 
         public async Task<Result> Register(IRepository repository)
         {

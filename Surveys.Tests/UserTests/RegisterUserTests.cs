@@ -12,8 +12,6 @@ namespace Surveys.Tests.UserTests
 {
     public class RegisterUserTests
     {
-
-
         [Test]
         public void EmptyPassword_ShouldReturnEmptyPasswordError()
         {

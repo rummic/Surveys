@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using Surveys.Commons;
 using Surveys.Commons.Dtos.UserDtos;
 using Surveys.Commons.ErrorMessages;
+using Surveys.Commons.Helpers;
+using Surveys.Domain.Entities;
 
 namespace Surveys.Api.Validators
 {
@@ -13,7 +15,7 @@ namespace Surveys.Api.Validators
         public static Result ValidateRegisterUser(RegisterUserDto userData)
         {
             var result = new Result();
-            
+
             if (string.IsNullOrEmpty(userData.Email))
             {
                 result.ErrorMessage = UserErrorMessages.EmptyEmail;
@@ -31,6 +33,22 @@ namespace Surveys.Api.Validators
             }
 
             return result;
+        }
+
+        public static Result<LoggedInUserDto> ValidateAuthenticate(User user, LoginUserDto loginUser)
+        {
+
+            var result = new Result<LoggedInUserDto>();
+
+            var hashedProvidedPassword = PasswordHelper.HashPassword(loginUser.Password, user.Salt);
+            var passwordsAreEqual = PasswordHelper.PasswordsAreEqual(user.Password, hashedProvidedPassword);
+            if (!passwordsAreEqual)
+            {
+                result.ErrorMessage = UserErrorMessages.InvalidPassword;
+            }
+
+            return result;
+
         }
     }
 }
