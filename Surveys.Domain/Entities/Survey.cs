@@ -7,7 +7,6 @@ namespace Surveys.Domain.Entities
     {
         [Key]
         public Guid Id { get; set; }
-        public DateTime SubmittedAt { get; set; }
      
     }
 }

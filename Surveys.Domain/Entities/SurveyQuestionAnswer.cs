@@ -11,6 +11,7 @@ namespace Surveys.Domain.Entities
         public User User { get; set; }
         public AnswerType AnswerType { get; set; }
         public string Answer { get; set; }
+        public DateTime SubmittedAt { get; set; }
     }
 
     public enum AnswerType
