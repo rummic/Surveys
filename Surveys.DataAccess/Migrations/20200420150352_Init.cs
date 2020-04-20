@@ -12,7 +12,8 @@ namespace Surveys.DataAccess.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
-                    Text = table.Column<string>(nullable: true)
+                    Text = table.Column<string>(nullable: true),
+                    AnswerType = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -80,7 +81,6 @@ namespace Surveys.DataAccess.Migrations
                     Id = table.Column<Guid>(nullable: false),
                     SurveyQuestionId = table.Column<Guid>(nullable: true),
                     UserId = table.Column<Guid>(nullable: true),
-                    AnswerType = table.Column<int>(nullable: false),
                     Answer = table.Column<string>(nullable: true),
                     SubmittedAt = table.Column<DateTime>(nullable: false)
                 },
@@ -103,34 +103,34 @@ namespace Surveys.DataAccess.Migrations
 
             migrationBuilder.InsertData(
                 table: "Questions",
-                columns: new[] { "Id", "Text" },
+                columns: new[] { "Id", "AnswerType", "Text" },
                 values: new object[,]
                 {
-                    { new Guid("b3dc99bb-3cc2-4cc8-9289-7a82daa32f8b"), "What is your company size?" },
-                    { new Guid("ca5e5523-3e9a-4712-a900-74a167895487"), "What is your IT team size (if any)?" },
-                    { new Guid("20fc4144-61ec-4561-b322-f1730adb80f6"), "What is your growth ambition?" },
-                    { new Guid("1ec6e5b9-cc4e-40ad-bfb5-733280df65f7"), "Do you own/maintain your own IT?" }
+                    { new Guid("14c2d0fb-3ef3-4ecf-8ea2-9cef40447fb7"), 0, "What is your company size?" },
+                    { new Guid("30e01f7a-7a75-41ee-bd15-60988f7a3313"), 0, "What is your IT team size (if any)?" },
+                    { new Guid("f67f87af-3bd2-4bb9-9c00-519a44a110a3"), 0, "What is your growth ambition?" },
+                    { new Guid("51e2951b-df94-409f-a730-0d2b4b6a59f2"), 0, "Do you own/maintain your own IT?" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Surveys",
                 columns: new[] { "Id", "CreatorEmail", "Name" },
-                values: new object[] { new Guid("06ea9bbf-af38-4d52-b570-c1fd60042f57"), "john@john.com", "Main Survey" });
+                values: new object[] { new Guid("1fa77e5a-edff-4b82-bbea-f2233cc34c88"), "john@john.com", "Main Survey" });
 
             migrationBuilder.InsertData(
                 table: "Users",
                 columns: new[] { "Id", "Email", "Name", "Password", "Role", "Salt" },
-                values: new object[] { new Guid("c6418729-897d-44d1-b353-9cd1d83d1709"), "john@john.com", "John", new byte[] { 57, 146, 187, 206, 203, 10, 69, 3, 122, 169, 255, 93, 30, 13, 153, 99, 154, 177, 152, 37, 34, 98, 98, 86, 220, 93, 54, 231, 124, 30, 229, 67 }, "Admin", new byte[] { 161, 124, 253, 120, 4, 245, 161, 124, 67, 155, 41, 134, 127, 29, 170, 113, 108, 20, 20, 220, 127, 13, 113, 167, 54, 219, 47, 202, 47, 164 } });
+                values: new object[] { new Guid("b1db141e-da43-462f-961a-d89a834983fa"), "john@john.com", "John", new byte[] { 170, 149, 246, 231, 104, 39, 0, 227, 245, 61, 14, 132, 233, 180, 216, 24, 213, 225, 232, 126, 101, 119, 44, 240, 216, 192, 200, 31, 156, 67, 99, 41 }, "Admin", new byte[] { 101, 97, 155, 140, 8, 254, 33, 192, 53, 185, 85, 83, 2, 138, 87, 253, 187, 29, 241, 64, 135, 22, 201, 10, 105, 18, 109, 1, 253, 73 } });
 
             migrationBuilder.InsertData(
                 table: "SurveyQuestions",
                 columns: new[] { "Id", "QuestionId", "SurveyId" },
                 values: new object[,]
                 {
-                    { new Guid("7c54220c-f910-481a-9157-d5923bb01ff5"), new Guid("b3dc99bb-3cc2-4cc8-9289-7a82daa32f8b"), new Guid("06ea9bbf-af38-4d52-b570-c1fd60042f57") },
-                    { new Guid("68d6a3c1-be2d-4a7b-a51a-d2a0adf028de"), new Guid("ca5e5523-3e9a-4712-a900-74a167895487"), new Guid("06ea9bbf-af38-4d52-b570-c1fd60042f57") },
-                    { new Guid("53d2cb10-5388-4fef-a45f-ec49ad962a11"), new Guid("20fc4144-61ec-4561-b322-f1730adb80f6"), new Guid("06ea9bbf-af38-4d52-b570-c1fd60042f57") },
-                    { new Guid("20e3c921-fad3-43d8-b28f-1a16b0d77662"), new Guid("1ec6e5b9-cc4e-40ad-bfb5-733280df65f7"), new Guid("06ea9bbf-af38-4d52-b570-c1fd60042f57") }
+                    { new Guid("dbb90875-f14c-4b90-a5b0-f6d9bf6aa39f"), new Guid("14c2d0fb-3ef3-4ecf-8ea2-9cef40447fb7"), new Guid("1fa77e5a-edff-4b82-bbea-f2233cc34c88") },
+                    { new Guid("51e773c9-aa9a-4c5d-a05c-eaa4b44eb1fc"), new Guid("30e01f7a-7a75-41ee-bd15-60988f7a3313"), new Guid("1fa77e5a-edff-4b82-bbea-f2233cc34c88") },
+                    { new Guid("c44a8d02-1d2b-41a9-80ed-f133f7c8d39b"), new Guid("f67f87af-3bd2-4bb9-9c00-519a44a110a3"), new Guid("1fa77e5a-edff-4b82-bbea-f2233cc34c88") },
+                    { new Guid("22517fb4-23a7-4b27-92cf-05498da0fb03"), new Guid("51e2951b-df94-409f-a730-0d2b4b6a59f2"), new Guid("1fa77e5a-edff-4b82-bbea-f2233cc34c88") }
                 });
 
             migrationBuilder.CreateIndex(

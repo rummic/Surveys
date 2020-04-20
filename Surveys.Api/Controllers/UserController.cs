@@ -24,7 +24,7 @@ namespace Surveys.Api.Controllers
         }
 
         [AllowAnonymous]
-        [HttpPost("Register")]
+        [HttpPost("register")]
         public async Task<IActionResult> RegisterUser([FromBody] RegisterUserDto userData)
         {
             var validatorResult = UserValidator.ValidateRegisterUser(userData);
@@ -44,7 +44,7 @@ namespace Surveys.Api.Controllers
         }
 
         [AllowAnonymous]
-        [HttpPost("Authenticate")]
+        [HttpPost("authenticate")]
         public async Task<IActionResult> Authenticate([FromBody]LoginUserDto loginUserDto)
         {
             var result = await _authorizationProvider.Authenticate(loginUserDto);

@@ -25,6 +25,9 @@ namespace Surveys.DataAccess.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<int>("AnswerType")
+                        .HasColumnType("int");
+
                     b.Property<string>("Text")
                         .HasColumnType("nvarchar(max)");
 
@@ -35,22 +38,26 @@ namespace Surveys.DataAccess.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("b3dc99bb-3cc2-4cc8-9289-7a82daa32f8b"),
+                            Id = new Guid("14c2d0fb-3ef3-4ecf-8ea2-9cef40447fb7"),
+                            AnswerType = 0,
                             Text = "What is your company size?"
                         },
                         new
                         {
-                            Id = new Guid("ca5e5523-3e9a-4712-a900-74a167895487"),
+                            Id = new Guid("30e01f7a-7a75-41ee-bd15-60988f7a3313"),
+                            AnswerType = 0,
                             Text = "What is your IT team size (if any)?"
                         },
                         new
                         {
-                            Id = new Guid("20fc4144-61ec-4561-b322-f1730adb80f6"),
+                            Id = new Guid("f67f87af-3bd2-4bb9-9c00-519a44a110a3"),
+                            AnswerType = 0,
                             Text = "What is your growth ambition?"
                         },
                         new
                         {
-                            Id = new Guid("1ec6e5b9-cc4e-40ad-bfb5-733280df65f7"),
+                            Id = new Guid("51e2951b-df94-409f-a730-0d2b4b6a59f2"),
+                            AnswerType = 0,
                             Text = "Do you own/maintain your own IT?"
                         });
                 });
@@ -74,7 +81,7 @@ namespace Surveys.DataAccess.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("06ea9bbf-af38-4d52-b570-c1fd60042f57"),
+                            Id = new Guid("1fa77e5a-edff-4b82-bbea-f2233cc34c88"),
                             CreatorEmail = "john@john.com",
                             Name = "Main Survey"
                         });
@@ -103,27 +110,27 @@ namespace Surveys.DataAccess.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("7c54220c-f910-481a-9157-d5923bb01ff5"),
-                            QuestionId = new Guid("b3dc99bb-3cc2-4cc8-9289-7a82daa32f8b"),
-                            SurveyId = new Guid("06ea9bbf-af38-4d52-b570-c1fd60042f57")
+                            Id = new Guid("dbb90875-f14c-4b90-a5b0-f6d9bf6aa39f"),
+                            QuestionId = new Guid("14c2d0fb-3ef3-4ecf-8ea2-9cef40447fb7"),
+                            SurveyId = new Guid("1fa77e5a-edff-4b82-bbea-f2233cc34c88")
                         },
                         new
                         {
-                            Id = new Guid("68d6a3c1-be2d-4a7b-a51a-d2a0adf028de"),
-                            QuestionId = new Guid("ca5e5523-3e9a-4712-a900-74a167895487"),
-                            SurveyId = new Guid("06ea9bbf-af38-4d52-b570-c1fd60042f57")
+                            Id = new Guid("51e773c9-aa9a-4c5d-a05c-eaa4b44eb1fc"),
+                            QuestionId = new Guid("30e01f7a-7a75-41ee-bd15-60988f7a3313"),
+                            SurveyId = new Guid("1fa77e5a-edff-4b82-bbea-f2233cc34c88")
                         },
                         new
                         {
-                            Id = new Guid("53d2cb10-5388-4fef-a45f-ec49ad962a11"),
-                            QuestionId = new Guid("20fc4144-61ec-4561-b322-f1730adb80f6"),
-                            SurveyId = new Guid("06ea9bbf-af38-4d52-b570-c1fd60042f57")
+                            Id = new Guid("c44a8d02-1d2b-41a9-80ed-f133f7c8d39b"),
+                            QuestionId = new Guid("f67f87af-3bd2-4bb9-9c00-519a44a110a3"),
+                            SurveyId = new Guid("1fa77e5a-edff-4b82-bbea-f2233cc34c88")
                         },
                         new
                         {
-                            Id = new Guid("20e3c921-fad3-43d8-b28f-1a16b0d77662"),
-                            QuestionId = new Guid("1ec6e5b9-cc4e-40ad-bfb5-733280df65f7"),
-                            SurveyId = new Guid("06ea9bbf-af38-4d52-b570-c1fd60042f57")
+                            Id = new Guid("22517fb4-23a7-4b27-92cf-05498da0fb03"),
+                            QuestionId = new Guid("51e2951b-df94-409f-a730-0d2b4b6a59f2"),
+                            SurveyId = new Guid("1fa77e5a-edff-4b82-bbea-f2233cc34c88")
                         });
                 });
 
@@ -135,9 +142,6 @@ namespace Surveys.DataAccess.Migrations
 
                     b.Property<string>("Answer")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("AnswerType")
-                        .HasColumnType("int");
 
                     b.Property<DateTime>("SubmittedAt")
                         .HasColumnType("datetime2");
@@ -185,12 +189,12 @@ namespace Surveys.DataAccess.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("c6418729-897d-44d1-b353-9cd1d83d1709"),
+                            Id = new Guid("b1db141e-da43-462f-961a-d89a834983fa"),
                             Email = "john@john.com",
                             Name = "John",
-                            Password = new byte[] { 57, 146, 187, 206, 203, 10, 69, 3, 122, 169, 255, 93, 30, 13, 153, 99, 154, 177, 152, 37, 34, 98, 98, 86, 220, 93, 54, 231, 124, 30, 229, 67 },
+                            Password = new byte[] { 170, 149, 246, 231, 104, 39, 0, 227, 245, 61, 14, 132, 233, 180, 216, 24, 213, 225, 232, 126, 101, 119, 44, 240, 216, 192, 200, 31, 156, 67, 99, 41 },
                             Role = "Admin",
-                            Salt = new byte[] { 161, 124, 253, 120, 4, 245, 161, 124, 67, 155, 41, 134, 127, 29, 170, 113, 108, 20, 20, 220, 127, 13, 113, 167, 54, 219, 47, 202, 47, 164 }
+                            Salt = new byte[] { 101, 97, 155, 140, 8, 254, 33, 192, 53, 185, 85, 83, 2, 138, 87, 253, 187, 29, 241, 64, 135, 22, 201, 10, 105, 18, 109, 1, 253, 73 }
                         });
                 });
 
