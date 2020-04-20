@@ -24,7 +24,6 @@ namespace Surveys.Api.Controllers
 
 
         [HttpGet("all")]
-        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> GetSurveys()
         {
             var survey = new Survey();

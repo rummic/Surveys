@@ -6,7 +6,6 @@ using Surveys.Commons.Dtos.UserDtos;
 using Surveys.Domain;
 using Surveys.Domain.Entities;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
 
 namespace Surveys.Api.Controllers
 {
